@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  ul
+  - if (planets)
+    - for (var i = 0; i < planetsLen; i++)
+      li= planets[i].name
+  - else
+    li sorry, no planets!
