@@ -9,5 +9,11 @@ const userSchema = new Schema({
   password: { type: String, required: true },
 });
 
+userSchema.methods.correctPassword = async function (
+  candidatePassword,
+  userPassword
+) {
+  return await bcrypt.compare(candidatePassword, userPassword);
+};
 //Export model
 module.exports = mongoose.model('user', userSchema);

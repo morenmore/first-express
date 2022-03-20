@@ -1,6 +1,7 @@
-var express = require('express');
-var router = express.Router();
-var modelPlanets = require('../models/planets');
+const express = require('express');
+const router = express.Router();
+const modelPlanets = require('../models/planets');
+const userController = require('../controller/userController');
 
 /* GET home page. */
 // router.get('/', function(req, res, next) {
@@ -29,5 +30,7 @@ router.get('/planets', async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+router.get('/login', userController.login);
 
 module.exports = router;
