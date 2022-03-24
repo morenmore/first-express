@@ -4,10 +4,11 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-global.logger || (global.logger = require('./config/logger')); // → 전역에서 사용
-const morganMiddleware = require('./config/morganMiddleware');
+// const logger = require('morgan');
 const mongoose = require('mongoose');
 const app = express();
+global.logger || (global.logger = require('./config/logger')); // → 전역에서 사용
+const morganMiddleware = require('./config/morganMiddleware');
 
 app.use(morganMiddleware); // 콘솔창에 통신결과 나오게 해주는 것
 mongoose
@@ -23,6 +24,7 @@ const usersRouter = require('./routes/users');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+// app.use(logger('short'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
