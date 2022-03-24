@@ -4,11 +4,12 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const logger = require('morgan');
+global.logger || (global.logger = require('./config/logger')); // → 전역에서 사용
+const morganMiddleware = require('./config/morganMiddleware');
 const mongoose = require('mongoose');
-
 const app = express();
 
+app.use(morganMiddleware); // 콘솔창에 통신결과 나오게 해주는 것
 mongoose
   .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Successfully connected to mongodb'));
@@ -22,7 +23,6 @@ const usersRouter = require('./routes/users');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

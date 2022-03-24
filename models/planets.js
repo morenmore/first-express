@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const planetsSchema = new Schema({
-  _id: { type: Schema.ObjectId, required: true },
   name: { type: String, required: true },
   orderFromSun: { type: Number, required: true },
   hasRings: { type: Boolean, required: true },
