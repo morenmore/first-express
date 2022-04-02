@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { MONGO_URI } = process.env;
+const { PORT, MONGO_URI } = process.env;
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -49,5 +49,9 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 //Set up mongoose connection
+
+app.listen(PORT, () => {
+  console.log(`Server listening .. ${PORT}`);
+});
 
 module.exports = app;
