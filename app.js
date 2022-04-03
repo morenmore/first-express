@@ -9,7 +9,6 @@ const mongoose = require('mongoose');
 const app = express();
 global.logger || (global.logger = require('./config/logger')); // → 전역에서 사용
 const morganMiddleware = require('./config/morganMiddleware');
-const hostName = '0.0.0.0';
 
 app.use(morganMiddleware); // 콘솔창에 통신결과 나오게 해주는 것
 mongoose
