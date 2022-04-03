@@ -51,7 +51,7 @@ app.use(function (err, req, res, next) {
 });
 //Set up mongoose connection
 
-app.listen(PORT, hostName, () => {
+app.listen(PORT, HOST, () => {
   console.log(`express is running on ${PORT}`);
 });
 
