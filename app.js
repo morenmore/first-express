@@ -49,9 +49,9 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 //Set up mongoose connection
-
-app.listen(PORT, () => {
-  console.log(`Server listening .. ${PORT}`);
-});
+// app.set('port', PORT);
+// app.listen(app.get('port'), () => {
+//   console.log(`Server listening .. `);
+// });
 
 module.exports = app;
