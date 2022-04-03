@@ -50,11 +50,8 @@ app.use(function (err, req, res, next) {
 });
 //Set up mongoose connection
 
-// app.listen(PORT, HOST, () => {
-//   console.log(`Server listening .. `);
-// });
-// app.listen('3000', '0.0.0.0', () => {
-//   console.log('server is listening on 3000 port');
-// });
+app.listen(PORT, HOST, () => {
+  console.log(`Server listening .. `);
+});
 
 module.exports = app;
