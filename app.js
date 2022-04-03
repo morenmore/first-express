@@ -53,8 +53,8 @@ app.use(function (err, req, res, next) {
 // app.listen(PORT, HOST, () => {
 //   console.log(`Server listening .. `);
 // });
-app.listen('3000', '0.0.0.0', () => {
-  console.log('server is listening on 3000 port');
-});
+// app.listen('3000', '0.0.0.0', () => {
+//   console.log('server is listening on 3000 port');
+// });
 
 module.exports = app;
