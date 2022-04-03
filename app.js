@@ -52,7 +52,7 @@ app.use(function (err, req, res, next) {
 //Set up mongoose connection
 
 app.listen(PORT, hostName, () => {
-  console.log(`express is running on ${port}`);
+  console.log(`express is running on ${PORT}`);
 });
 
 module.exports = app;
