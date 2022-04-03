@@ -22,6 +22,7 @@
     "winston": "^3.6.0",
     "winston-daily-rotate-file": "^4.6.1"
   },
+  "proxy": "140.238.0.81:3000",
   "devDependencies": {
     "nodemon": "^2.0.15"
   }
