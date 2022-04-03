@@ -50,8 +50,11 @@ app.use(function (err, req, res, next) {
 });
 //Set up mongoose connection
 
-app.listen(PORT, HOST, () => {
-  console.log(`express is running on ${PORT}`);
+// app.listen(PORT, HOST, () => {
+//   console.log(`express is running on ${PORT}`);
+// });
+http.createServer(app).listen(PORT, HOST, () => {
+  console.log(`Server running at http://${HOST},port-${PORT}/`);
 });
 
 module.exports = app;
