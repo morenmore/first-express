@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+// const jwt = require('jsonwebtoken');
 const argon2 = require('argon2');
 const User = require('./../models/user');
 
@@ -28,13 +28,13 @@ exports.signup = async (req, res, next) => {
     password: hashPassword,
   });
 
-  const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRES_IN, // set to 90d for 90 days
-  });
+  // const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
+  //   expiresIn: process.env.JWT_EXPIRES_IN, // set to 90d for 90 days
+  // });
 
   res.status(201).json({
     status: 'success',
-    token,
+    // token,
     data: {
       user: newUser,
     },
