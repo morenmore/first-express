@@ -1,4 +1,5 @@
 const passport = require('passport');
+const argon2 = require('argon2');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('./../models/user');
 
@@ -19,14 +20,21 @@ module.exports = () => {
         usernameField: 'id',
         passwordField: 'password',
         session: true, // 세션에 저장 여부
-        passReqToCallback: false,
+        // passReqToCallback: false,
       },
-      (id, password, done) => {
+      async (id, password, done) => {
+        console.log(id, password);
         const user = await User.findOne({ id }).select('+password');
+        console.log(user);
         if (!(await argon2.verify(user.password, password))) {
-          return done(null, false, {status: 'failure', message: '존재하지 않는 아이디이거나 패스워드가 맞지 않습니다.' }); 
+          done(null, false, {
+            status: 'failure',
+            message: '존재하지 않는 아이디이거나 패스워드가 맞지 않습니다.',
+          });
+        } else {
+          done(null, user);
         }
-       }
+      }
     )
   );
 };

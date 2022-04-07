@@ -8,10 +8,16 @@ const cookieParser = require('cookie-parser');
 // const logger = require('morgan');
 const mongoose = require('mongoose');
 const app = express();
-global.logger || (global.logger = require('./config/logger')); // → 전역에서 사용
-const morganMiddleware = require('./config/morganMiddleware');
+// global.logger || (global.logger = require('./config/logger')); // → 전역에서 사용
+// const morganMiddleware = require('./config/morganMiddleware');
 
-app.use(morganMiddleware); // 콘솔창에 통신결과 나오게 해주는 것
+const flash = require('express-flash');
+const passport = require('passport');
+const passportConfig = require('./config/passport');
+
+passportConfig(); // 패스포트 설정
+
+// app.use(morganMiddleware); // 콘솔창에 통신결과 나오게 해주는 것
 mongoose
   .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Successfully connected to mongodb'));
@@ -49,7 +55,10 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-//Set up mongoose connection
+
+app.use(flash());
+app.use(passport.initialize()); // 요청 객체에 passport 설정을 심음
+app.use(passport.session()); // req.session 객체에 passport정보를 추가 저장
 
 http.createServer(app).listen(PORT, HOST, () => {
   console.log(`Server running at http://${HOST}:${PORT}/`);
